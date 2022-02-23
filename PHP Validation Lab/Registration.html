@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+</head>
+<body>
+    <h1>Registration Form</h1>
+	<fieldset>
+	<legend>Registration Information</legend>
+		<form action="" method="post" novalidate>
+			<label for="username">User Name: </label>
+			<input type="text" name="username" id="username"  maxlength="5" >
+			<br><br>
+			
+			<label for="password">Password: </label>
+			<input type="password" name="password" id="password">
+			<br><br>
+		
+			<label for="confirmpassword">Confirm Password:</label>
+			<input type="password" name="confirmpassword" id="confirmpassword">
+			<br><br>
+			
+            <label for="firstname">First Name:</label>
+			<input type="text" name="firstname" id="firstname">
+            <br><br>
+			
+            <label for="lastname">Last Name:</label>
+			<input type="text" name="lastname" id="lastname">
+            <br><br>
+
+            <label for="gender">Gender:</label>
+            <input type="radio" name="gender" value="male">Male
+            <input type="radio" name="gender" value="female">Female
+            <input type="radio" name="gender" value="others">Others
+            <br><br>
+			
+            <label for="date">Date of Birth:</label>
+			<input type="date" name="date" id="date">
+            <br><br>
+
+            <label for="religion" >Religion:</label>
+            <select name="religion" id="religion">
+            <option name="religion" id="religion" value="islam">Islam</option> 
+            <option name="religion" id="religion" value="hindu"selected>Hindu</option>
+            <option name="religion" id="religion" value="buddhist">Buddhist</option>
+            <option name="religion" id="religion" value="christianity">Christianity</option>
+            </select>
+            <br><br>
+
+            <label for="presentaddress">Present Address:</label><br><br>
+            <textarea name="presentaddress" id="presentaddress" cols="40" rows="3"></textarea>
+            <br><br>
+
+            <label for="permanentaddress">Permanent Address:</label><br><br>
+            <textarea name="permanentaddress" id="permanentaddress" cols="40" rows="3"></textarea>
+            <br><br>
+           
+            <label for="phonenumber">Phone Number:</label>
+			<input type="tel" name="phonenumber" id="phonenumber">
+            <br><br>
+
+            <label for="email">E-mail:</label>
+            <input type="email" name="email" id="email">
+            <br><br>
+
+            <label for="link">Personal Website:</label>
+            <a href="https://github.com/anprottush"target="_blank" name="link" id="link">Link</a>
+            <br><br>
+
+			<input type="submit" name="submit" value="Submit">
+		</form>
+</fieldset>
+	
+</body>
+</html>
