@@ -1,0 +1,1 @@
+[{"Id":1,"FirstName":"Asif","LastName":"Mahmud","Gender":"male","DateofBirth":"2022-03-15","UserName":"asif","Password":"asif1234","Religion":"islam","PresentAddress":"Dhanmondi 6","PermanentAddress":"Dhanmondi 6","PhoneNumber":"01459878974","Email":"asif@gmail.com"}]
