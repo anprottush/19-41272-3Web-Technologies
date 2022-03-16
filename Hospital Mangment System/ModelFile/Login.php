@@ -25,45 +25,7 @@
     
     ?>
     <?php
-    $flag=0;
-    
-      define("FILENAME", "../ModelFile/RegistrationInformation.json");
-      $handle = fopen(FILENAME, "r");
-      $fr = fread($handle, filesize(FILENAME)+1);
-      $arr = json_decode($fr);
-      $fc = fclose($handle);
-      if ($arr === NULL) {
-          echo "No record(s) found";
-      }
-      else
-      {
-          for ($i = 0; $i < count($arr); $i++) {
-              if($arr[$i]->UserName==$username and $arr[$i]->Password==$password and $password==$confirmpassword)
-              {
-                
-                  $flag=1;
-                  break;
-              } 
-           }
-           if($flag==1 )
-           {
-               
-               
-                header("Location:../ViewDataShow/DashBoard.html");
-             
-               
-               
-           }
-
-          else if($password!=$confirmpassword)
-           {
-               echo "Password not match";
-           }
-          else
-            {
-                echo "No data found";
-            }
-      }
+   
     ?>
 </body>
 </html>

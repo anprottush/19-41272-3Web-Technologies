@@ -7,7 +7,9 @@
     <title>Reset Password Check</title>
 </head>
 <body>
+    <h1>Reset Password Action</h1>
 <?php
+
 if ($_SERVER['REQUEST_METHOD'] === "POST")
 {
     function getdata($data)
@@ -17,6 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] === "POST")
         $data = htmlspecialchars($data);
         return $data;
     }
+    $validemail=getdata(@$_POST['validemail']);
+$validphonenumber=getdata(@$_POST['validphonenumber']);
+$currentpassword=getdata(@$_POST['currentpassword']);
     $newpassword=getdata(@$_POST['newpassword']);
     $confirmpassword=getdata(@$_POST['confirmpassword']);
     if(empty($newpassword) or empty($confirmpassword))
@@ -26,9 +31,13 @@ if ($_SERVER['REQUEST_METHOD'] === "POST")
     }
     else
     {
-        header("Location:../ModelFile/Reset.php?newpassword=$newpassword&confirmpassword=$confirmpassword");
+        header("Location:../ModelFile/Reset.php?validemail=$validemail&validphonenumber=$validphonenumber&currentpassword=$currentpassword&newpassword=$newpassword&confirmpassword=$confirmpassword");
     }
     
+}
+else
+{
+    die("Invalid request");
 }
 
 ?>

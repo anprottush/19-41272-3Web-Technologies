@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,17 +39,34 @@ if ($_SERVER['REQUEST_METHOD'] === "POST")
       }
     else
     {
-        session_start();
-        $_SESSION['username']=$username;
-        $_SESSION['email']=$email;
-        $_SESSION['password']=$password;
-        $_SESSION['address']=$address;
-        $_SESSION['phonenumber']=$phonenumber;
-        $_SESSION['age']=$age;
-        $_SESSION['date']=$date;
-        $_SESSION['gender']=$gender;
-        header("Location:../ModelFile/Registration.php");
-        
+        define("FILENAME", "../ModelFile/RegistrationInformation.json");
+        $handle = fopen(FILENAME, "r");
+        $fr = fread($handle, filesize(FILENAME)+1);
+        $arr = json_decode($fr);
+        $fc = fclose($handle);
+        $handle = fopen(FILENAME, "w");
+        if ($arr === NULL)
+        {
+            $id = 1;
+            $data=array("Id" => $id,"UserName"=>"$username","Email"=>"$email","Password"=>"$password","Address"=>"$address","PhoneNumber"=>"$phonenumber","Age"=>"$age","Date"=>"$date","Gender"=>"$gender");
+            $data = array($data);
+            $data = json_encode($data);
+            $fw = fwrite($handle, $data);     
+        }
+        else
+        {
+            $id = $arr[count($arr)-1]->Id;
+            
+            $data=array("Id" => $id+1,"UserName"=>"$username","Email"=>"$email","Password"=>"$password","Address"=>"$address","PhoneNumber"=>"$phonenumber","Age"=>"$age","Date"=>"$date","Gender"=>"$gender");
+            $arr[] = $data;
+            $data = json_encode($arr);
+            $fw = fwrite($handle, $data);
+        }
+        $fc = fclose($handle);
+        if($fw)
+        {
+            echo "<h2>Data Insert Successful</h2>";
+        }
     }
     
 }
@@ -56,7 +76,7 @@ else
 }
 ?>
 <br>
-<a href="../ViewDataShow/Registration.html" name="link" id="link" style="text-decoration: none;color:black">Create User</a><br>
-<a href="UserList.php" name="link" id="link" style="text-decoration: none;color:black">User List</a>
+<a href="../ViewDataShow/Registration.php" name="link" id="link" style="text-decoration: none;color:black">Create User</a><br>
+<a href="../ControllerCheck/ProfileView.php" name="link" id="link" style="text-decoration: none;color:black">User List</a>
 </body>
 </html>

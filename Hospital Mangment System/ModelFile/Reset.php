@@ -10,19 +10,20 @@
     <h1>Reset </h1>
     <?php
       if ($_SERVER['REQUEST_METHOD'] === "GET") {
+          $validemail=$_GET["validemail"];
+          $validphonenumber=$_GET["validphonenumber"];
+          $currentpassword=$_GET["currentpassword"];
         $newpassword=$_GET["newpassword"];
         $confirmpassword=$_GET["confirmpassword"];
       }
-   
     ?>
     <?php
     $flag=0;
-    session_start();
       define("FILENAME", "../ModelFile/RegistrationInformation.json");
       $handle = fopen(FILENAME, "r");
       $fr = fread($handle, filesize(FILENAME)+1);
       $arr = json_decode($fr);
-     // $fc = fclose($handle);
+      $fc = fclose($handle);
 
       $handle = fopen(FILENAME, "w");
 
@@ -30,79 +31,37 @@
           echo "No record(s) found";
       }
       else
-      {
-          $id = $_SESSION['id'];
-          	for ($i = 0; $i < count($arr); $i++) {
-					if ($id === $arr[$i]->id) {
-						$arr[$i]->Password = $newpassword;
-						
-					}
-				}
-
-				$data = json_encode($arr);
-				$fw = fwrite($handle, $data);
-		
-				$fc = fclose($handle);
-
-				if ($fw) {
-					echo "<h3>Data Update Successful</h3>";
-				}
-
-			
-
+      {      
+		for ($i = 0; $i < count($arr); $i++) {
+			if ($arr[$i]->Email== $validemail and $arr[$i]->PhoneNumber==$validphonenumber and $currentpassword==$arr[$i]->Password) {
+				$arr[$i]->Password = $newpassword;
+				$flag=1;
+				break;
+			}
+			else
+			{
+				$flag=0;
+			}
 		}
 
+		$data = json_encode($arr);
+		$fw = fwrite($handle, $data);
+		$fc = fclose($handle);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-       
-		// for ($i = 0; $i < count($arr); $i++) {
-		// 	if ($arr[$i]->Email== $validemail and $arr[$i]->PhoneNumber==$validphonenumber and +$currentpassword===$arr[$i]->Password) {
-		// 		$arr[$i]->Password = $newpassword;
-		// 		$flag=1;
-		// 		break;
-		// 	}
-		// 	else
-		// 	{
-		// 		$flag=0;
-		// 		break;
-		// 	}
-		// }
-
-		// $data = json_encode($arr);
-		// $fw = fwrite($handle, $data);
-		// $fc = fclose($handle);
-
-		// if ($flag==1 and $newpassword==$confirmpassword)
-        // {
-        //     echo "<h3>Password Reset Successful</h3>";
-		// }
-        // else if($newpassword!=$confirmpassword)
-        // {
-        //     echo "Please Re-type Password";
-        // }
-		// else 
-        // {
-        //     echo "<h3>User not found</h3>";
-		// 	echo "<h3>Invalid User</h3>";
-		// }
+		if ($flag==1)
+        {
+            echo "<h3>Password Reset Successful</h3>";
+		}
+        else if($newpassword!=$confirmpassword)
+        {
+            echo "Please Re-type Password";
+        }
+		else 
+        {
+            echo "<h3>User not found</h3>";
+			echo "<h3>Invalid User</h3>";
+		}
+    }
     ?>
 </body>
 </html>

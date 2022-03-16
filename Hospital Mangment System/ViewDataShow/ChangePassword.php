@@ -9,14 +9,28 @@
 <body>
 <?php
     include('Header.php');
-    ?>
+?>
+    <h1>Change Password</h1>
+	<fieldset>
+        <legend>Password Information</legend>
+		<form action="../ControllerCheck/ChangePasswordCheck.php" method="post" novalidate>
+
+			<label for="username">Valid User Name:</label>
+			<input type="text" name="username" id="username" required>
+			<br><br>
+	
+			<label for="password">Password:</label>
+			<input type="password" name="password" id="password" required>
+			<br><br>
+	
+			<input type="submit" name="submit" value="Change Password">
+		</form>
+    </fieldset>
 
 
-
-
-    <?php
-    include('Footer.php');
-    ?>
 
 </body>
 </html>
+<?php
+    include('footer.php');
+    ?>

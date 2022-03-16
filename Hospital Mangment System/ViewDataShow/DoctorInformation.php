@@ -1,3 +1,6 @@
+<?php
+    include('Header.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,15 +10,22 @@
     <title>Doctor Information</title>
 </head>
 <body>
-<?php
-    include('Header.php');
-    ?>
+    <h1>Doctor Information</h1>
+    <fieldset>
+        <legend>Doctor Information</legend>
+        <form action="../ControllerCheck/DoctorInformationCheck.php" method="POST" novalidate>
+        <div class="">
+        <label for=""  id="">Search Information:</label><br>
+        <input type="text" name="id" id="" placeholder="" required>
+      </div><br>
 
-
-
-
-    <?php
-    include('Footer.php');
-    ?>
+      <div class="searchbutton">
+        <input type="submit" name="submit"id="submit" value="Search">
+      </div><br>
+    </form>
+    </fieldset>
 </body>
 </html>
+<?php
+    include('footer.php');
+    ?>

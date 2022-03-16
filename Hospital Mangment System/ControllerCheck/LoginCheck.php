@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +10,8 @@
     <title>Login Check</title>
 </head>
 <body>
+    <h1>Login Check</h1>
 <?php
-session_start();
 $flag=0;
 if ($_SERVER['REQUEST_METHOD'] === "POST")
 
@@ -30,7 +33,43 @@ if ($_SERVER['REQUEST_METHOD'] === "POST")
     }
     else
     {
-         header("Location:../ModelFile/Login.php?username=$username&password=$password&confirmpassword=$confirmpassword");
+        $flag=0;
+        define("FILENAME", "../ModelFile/RegistrationInformation.json");
+        $handle = fopen(FILENAME, "r");
+        $fr = fread($handle, filesize(FILENAME)+1);
+        $arr = json_decode($fr);
+        $fc = fclose($handle);
+        if ($arr === NULL) {
+            echo "No record(s) found";
+        }
+        else
+        {
+            for ($i = 0; $i < count($arr); $i++) {
+                if($arr[$i]->UserName==$username and $arr[$i]->Password==$password and $password==$confirmpassword)
+                {
+                    $name=$arr[$i]->UserName;
+                    $flag=1;
+                    break;
+                } 
+             }
+             if($flag==1)
+             {
+                 $_SESSION['username']=$name;
+                header("Location:../ViewDataShow/DashBoard.php");
+                 
+             }
+  
+            else if($password!=$confirmpassword)
+             {
+                 echo "Password not match";
+             }
+            else
+              {
+                  $_SESSION['errormsg']="Log in failed";
+
+                  header("Location:../ViewDataShow/Login.php");
+              }
+        }
     }
     
 }

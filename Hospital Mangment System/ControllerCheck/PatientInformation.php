@@ -1,13 +1,16 @@
-<!DOCTYPE html>
+<?php
+    include('../ViewDataShow/Header.php');
+    ?>
+<<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Profile View</title>
+	<title>Patient Information</title>
 </head>
 <body>
 
-	<h1>Profile View</h1>
+	<h1>Patient Information</h1>
 
 	<?php 
 	
@@ -61,3 +64,7 @@
 
 </body>
 </html>
+
+    <?php
+    include('../ViewDataShow/Footer.php');
+    ?>
