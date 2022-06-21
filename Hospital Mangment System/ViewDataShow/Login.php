@@ -1,3 +1,11 @@
+<?php
+include('Header.php');
+session_start();
+if(isset($_SESSION['username']))
+{
+    header("Location:../ViewDataShow/DashBoard.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
